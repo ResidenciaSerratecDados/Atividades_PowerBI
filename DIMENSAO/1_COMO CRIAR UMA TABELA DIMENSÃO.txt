@@ -1,0 +1,23 @@
+COMO CRIAR UMA TABELA DIMENSÃO
+
+1. Na Tabela Fato, clique com o botão direito do mouse na coluna que será transformada em Tabela Dimensão > Adicionar como nova consulta;
+
+2. Na nova consulta, remova duplicadas;
+
+3. Altere o tipo de dados e nomeie a coluna;
+
+4.  Transforme em tabela e se necessário, nomeie a tabela;
+
+5. Criar a coluna índice (a chave primária), clique na guia Adicionar Coluna > Coluna de Índice >  De 1
+
+6. Mover a coluna para o início da tabela e nomear a coluna Id... (ex. Id canal)
+
+7. Retorne a tabela fato, clique na guia Página Inicial > Combinar > Mesclar Consultas;
+
+8. Na caixa Mesclar Consultas, na tabela fato (a primeira), selecione a coluna que você escolheu no item 1 / Selecione a segunda tabela (aquela que você criou como dimensão) / Selecione a coluna correspondente (a mesma coluna que você seleciona na tabela fato) e verifique se "deu Match" (se correspondem) e OK.
+
+9. Ainda na Tabela Fato, na nova coluna, clique no seletor tabela (as duas setas na coluna com o conteúdo "Table") / Deixe selecionado apenas a coluna do índice e OK
+
+10. Remova a coluna que você escolheu no item 1;
+
+11. Renomeie a coluna que foi adicionada com o índice da tabela dimensão.

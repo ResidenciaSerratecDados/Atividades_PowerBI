@@ -1,0 +1,41 @@
+Faturamento =
+SUMX(
+    Venda,
+    Venda[Quantidade] * RELATED(Produto[Valor de venda]))
+ 
+Faturamento Fixo = CALCULATE(
+    [Faturamento],
+    ALL(Produto[Tipo])
+    )
+ 
+Percentual Faturamento = DIVIDE(
+    [Faturamento],
+    [Faturamento Fixo]
+)
+
+Valor com Desconto =
+    IF(
+        Venda[Forma de Pagamento] = "Dinheiro",
+        [Faturamento] * 0.9,
+        [Faturamento]
+    )
+ 
+Rank Produtos =
+RANKX(
+    ALL(
+        Produto[Tipo]),
+        [Faturamento]
+        )
+   
+ 
+Desconto dia das Mães =
+    IF(
+     RELATED(
+        Cliente[Gênero]) = "F"
+        &&
+        RELATED(
+            Cliente[Num Filhos]) > 0,
+            "Tem Desconto",
+            "Sem Desconto"
+    )
+ 
