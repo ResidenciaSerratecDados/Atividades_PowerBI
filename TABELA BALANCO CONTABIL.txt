@@ -1,0 +1,34 @@
+TABELA BALANCO CONTABIL
+CPF
+Funcionário
+Salario
+cod_cliente
+valor_compra_cliente
+CNPJ
+Fornecdor
+Valor_compra_suprimento
+Despesas_empresariais
+Lucro = valor_compra_cliente - Salario - Valor_compra_suprimento - Despesas_empresariais
+
+SELECT despesas = v_liquido + juros + multa + desconto, dt_negociacao >= 04/2018, qt_rateio >=3, níveis natureza
+
+servidor/host: neki-postgres-dev.cot9mlhyhvdc.us-east-2.rds.amazonaws.com
+porta: 5432
+banco de dados: residencia
+usuário: residencia
+senha:aluno2025
+DBEAVER
+
+select 
+ sum(f.fimo_nm_vlr_desdobramento) as tot_valor_bruto
+ , fn.fina_tx_descricao as natureza,
+ to_char(f.fimo_dt_venc_original,'yyyy-mm') as mesano
+from financeiro.financeiro_movimentacao f 
+ join financeiro.financeiro_natureza fn on (f.fina_cd_id =fn.fina_cd_id) 
+where f.fimo_tx_tipo_lancamento = -1 -- despesas
+AND 
+--to_char(f.fimo_dt_venc_original,'yyyy-mm') = '2018-04'
+f.fimo_dt_venc_original between :inicio and :fim 
+group by fn.fina_tx_descricao, 
+to_char(f.fimo_dt_venc_original,'yyyy-mm')
+
